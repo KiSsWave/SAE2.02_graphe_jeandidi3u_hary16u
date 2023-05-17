@@ -11,6 +11,10 @@ public class Noeud {
         this.adj = new ArrayList<Arc>();
     }
 
+    public boolean equals(String o){
+        return this.nom == o;
+    }
+
     public void ajouterArc(String destination, double cout) {
         this.adj.add(new Arc(destination, cout));
     }
