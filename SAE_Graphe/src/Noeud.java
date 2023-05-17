@@ -18,4 +18,12 @@ public class Noeud {
     public void ajouterArc(String destination, double cout) {
         this.adj.add(new Arc(destination, cout));
     }
+
+    public String getNom(){
+        return this.nom;
+    }
+
+    public ArrayList<Arc> getAdj(){
+        return this.adj;
+    }
 }

@@ -1,3 +1,3 @@
-public class GrapheListe implements Graphe{
+public class GrapheListe {
 
 }
