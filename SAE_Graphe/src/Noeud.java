@@ -10,4 +10,8 @@ public class Noeud {
         this.nom = n;
         this.adj = new ArrayList<Arc>();
     }
+
+    public void ajouterArc(String destination, double cout) {
+        this.adj.add(new Arc(destination, cout));
+    }
 }
