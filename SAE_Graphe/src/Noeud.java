@@ -10,4 +10,8 @@ public class Noeud {
         this.nom = n;
         this.adj = new ArrayList<Arc>();
     }
+
+    public boolean equals(String o){
+        return this.nom==o;
+    }
 }
