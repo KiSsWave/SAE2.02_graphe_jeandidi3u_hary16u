@@ -10,5 +10,4 @@ public class Main {
         gr.ajouterArc("E", "D", 43);
     }
 }
-    }
-}
+
