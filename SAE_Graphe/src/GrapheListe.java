@@ -40,4 +40,19 @@ public class GrapheListe implements Graphe {
             }
         }
     }
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Noeud noeud : ensNoeuds) {
+            sb.append(noeud.getNom()).append(" -> ");
+            for (Arc arc : noeud.getAdj()) {
+                sb.append(arc.getDest()).append("(").append(arc.getCout()).append(") ");
+            }
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
+
+
 }
+
+

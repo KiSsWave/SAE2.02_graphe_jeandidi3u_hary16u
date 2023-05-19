@@ -3,10 +3,20 @@ class Arc {
     private double cout;
 
     public Arc(String d, double c) {
-        if (cout <= 0) {
-            throw new IllegalArgumentException("Le coût de l'arc doit être strictement positif.");
+        if(c <= 0){
+            throw new IllegalArgumentException("Le cout doit etre positif");
         }
         this.dest = d;
         this.cout = c;
     }
+
+    public String getDest() {
+        return dest;
+    }
+
+    public double getCout() {
+        return cout;
+    }
+
+
 }

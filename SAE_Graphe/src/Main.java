@@ -8,6 +8,7 @@ public class Main {
         gr.ajouterArc("D", "B", 23);
         gr.ajouterArc("D", "C", 10);
         gr.ajouterArc("E", "D", 43);
+        System.out.println(gr.toString());
     }
 }
 
