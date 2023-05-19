@@ -9,6 +9,7 @@ public class Main {
         gr.ajouterArc("D", "C", 10);
         gr.ajouterArc("E", "D", 43);
         System.out.println(gr.toString());
+        System.out.println(gr.toGraphviz());
     }
 }
 

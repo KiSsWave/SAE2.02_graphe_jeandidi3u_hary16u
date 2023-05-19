@@ -52,7 +52,18 @@ public class GrapheListe implements Graphe {
         return sb.toString();
     }
 
+    public String toGraphviz() {
+        StringBuilder sb = new StringBuilder("digraph G {\n");
+        for (Noeud noeud : ensNoeuds) {
 
+            for (Arc arc : noeud.getAdj()){
+                sb.append(noeud.getNom()).append(" -> ");
+                sb.append(arc.getDest()).append(" [label = ").append((int)arc.getCout()).append("]\n");
+            }
+        }
+        sb.append("}");
+        return sb.toString();
+    }
 }
 
 
