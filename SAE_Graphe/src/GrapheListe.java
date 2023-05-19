@@ -45,7 +45,7 @@ public class GrapheListe implements Graphe {
         for (Noeud noeud : ensNoeuds) {
             sb.append(noeud.getNom()).append(" -> ");
             for (Arc arc : noeud.getAdj()) {
-                sb.append(arc.getDest()).append("(").append(arc.getCout()).append(") ");
+                sb.append(arc.getDest()).append("(").append((int)arc.getCout()).append(") ");
             }
             sb.append("\n");
         }
