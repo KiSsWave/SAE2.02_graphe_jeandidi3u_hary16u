@@ -43,43 +43,6 @@ public class GrapheListe implements Graphe {
 
     }
 
-    public static void fichierMatrice(String matriceFichier, String arcFichier) {
-        try (BufferedReader br = new BufferedReader(new FileReader(matriceFichier));
-             BufferedWriter bw = new BufferedWriter(new FileWriter(arcFichier))) {
-
-            // Lire la première ligne du fichier qui contient les noms des noeuds.
-            String[] noeuds = br.readLine().split("\\s+");
-
-            String ligne;
-            while ((ligne = br.readLine()) != null) {
-                // diviser la ligne en un tableau de chaînes.
-                String[] partie = ligne.split("\\s+");
-
-                // L'indice du noeud source dans le tableau noeuds.
-                int index = -1;
-                for (int i = 0; i < noeuds.length; i++) {
-                    if (noeuds[i].equals(partie[0])) {
-                        index = i;
-                        break;
-                    }
-                }
-                // Écrire les arcs dans le fichier de sortie.
-                for (int i = 1; i < partie.length; i++) {
-                    // Si le coût n'est pas 0, écrire l'arc dans le fichier de sortie.
-                    double cout = Double.parseDouble(partie[i]);
-                    if (cout != 0) {
-                        bw.write(noeuds[index] + " " + noeuds[i] + " " + cout + "\n");
-                    }
-                }
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("Fichier non trouvé");
-        } catch (IOException e) {
-            System.out.println("Erreur lors de la lecture/écriture du fichier: ");
-        }
-    }
-
-
     @Override
     public ArrayList<String> listeNoeuds() {
         return this.ensNom;
@@ -122,6 +85,7 @@ public class GrapheListe implements Graphe {
         return sb.toString();
     }
 
+
     public String toGraphviz() {
         StringBuilder sb = new StringBuilder("digraph G {\n");
         for (Noeud noeud : ensNoeuds) {
@@ -134,6 +98,45 @@ public class GrapheListe implements Graphe {
         sb.append("}");
         return sb.toString();
     }
+
+    public static void fichierMatrice(String matriceFichier, String arcFichier) {
+        try (BufferedReader br = new BufferedReader(new FileReader(matriceFichier));
+             BufferedWriter bw = new BufferedWriter(new FileWriter(arcFichier))) {
+
+            // Lire la première ligne du fichier qui contient les noms des noeuds.
+            String[] noeuds = br.readLine().split("\\s+");
+
+            String ligne;
+            while ((ligne = br.readLine()) != null) {
+                // diviser la ligne en un tableau de chaînes.
+                String[] partie = ligne.split("\\s+");
+
+                // L'indice du noeud source dans le tableau noeuds.
+                int index = -1;
+                for (int i = 0; i < noeuds.length; i++) {
+                    if (noeuds[i].equals(partie[0])) {
+                        index = i;
+                        break;
+                    }
+                }
+                // Écrire les arcs dans le fichier de sortie.
+                for (int i = 1; i < partie.length; i++) {
+                    // Si le coût n'est pas 0, écrire l'arc dans le fichier de sortie.
+                    double cout = Double.parseDouble(partie[i]);
+                    if (cout != 0) {
+                        bw.write(noeuds[index] + " " + noeuds[i] + " " + cout + "\n");
+                    }
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Fichier non trouvé");
+        } catch (IOException e) {
+            System.out.println("Erreur lors de la lecture/écriture du fichier: ");
+        }
+    }
+
+    public ArrayList<Noeud> getNoeuds(){
+        return this.ensNoeuds;
+    }
+
 }
-
-

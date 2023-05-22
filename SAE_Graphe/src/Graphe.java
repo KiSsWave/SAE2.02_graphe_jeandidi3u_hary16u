@@ -6,6 +6,10 @@ public interface Graphe {
 
     public ArrayList<Arc> suivants(String n);
 
+    public ArrayList<Noeud> getNoeuds();
+
+
+
 
 
 

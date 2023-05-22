@@ -1,0 +1,37 @@
+Fonction pointFixe(Graphe g InOut, Noeud depart)
+    // Initialisation
+    Pour chaque noeud v dans g.listeNoeuds() faire
+        Si v == depart alors
+            v.distance ← 0
+        Sinon
+            v.distance ← +∞
+        Fin Si
+        v.parent ← null
+    Fin Pour
+    
+    Tant que il y a des nœuds non visités faire
+        // Trouver le noeud non visité avec la distance minimale
+        Noeud min ← null
+        Pour chaque nœud v dans g.listeNoeuds() faire
+            Si v non visité et (min est null ou v.distance < min.distance) alors
+                min ← v
+            Fin Si
+        Fin Pour
+        
+        Si min est null alors
+            Sortir de la boucle
+        Fin Si
+        
+        // Mettre à jour les distances des noeud adjacents
+        Pour chaque arc a dans g.suivants(mine) faire
+            Noeud voisin ← a.dest
+            Double nouveauDistance ← min.distance + a.cout
+            Si nouveauDistance < voisin.distance alors
+                voisin.distance ← nouveauDistance
+                voisin.parent ← min
+            Fin Si
+        Fin Pour
+        
+        min.visité ← vrai
+    Fin Tant que
+Fin 
