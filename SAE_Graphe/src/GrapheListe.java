@@ -1,5 +1,6 @@
+import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class GrapheListe implements Graphe {
     private ArrayList<String> ensNom;
@@ -9,6 +10,75 @@ public class GrapheListe implements Graphe {
         this.ensNom = new ArrayList<>();
         this.ensNoeuds = new ArrayList<>();
     }
+
+    public GrapheListe(String nomFichier) {
+        this.ensNom = new ArrayList<>();
+        this.ensNoeuds = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(nomFichier))) {
+            String ligne = br.readLine();
+            while (ligne != null) {
+                String[] partie = ligne.split("\t");
+                String noeud1 = partie[0];
+                String noeud2 = partie[1];
+                double cost = Double.parseDouble(partie[2]);
+
+                if (!this.ensNom.contains(noeud1)) {
+                    this.ensNom.add(noeud1);
+                    this.ensNoeuds.add(new Noeud(noeud1));
+                }
+                if (!this.ensNom.contains(noeud2)) {
+                    this.ensNom.add(noeud2);
+                    this.ensNoeuds.add(new Noeud(noeud2));
+                }
+                int index = this.ensNom.indexOf(noeud1);
+                this.ensNoeuds.get(index).ajouterArc(noeud2, cost);
+                ligne = br.readLine();
+            }
+        } catch(FileNotFoundException e) {
+            System.out.println("Fichier introuvable.");
+        } catch (IOException e) {
+            System.out.println("Erreur dans la lecture du fichier.");
+        }
+
+    }
+
+    public static void fichierMatrice(String matriceFichier, String arcFichier) {
+        try (BufferedReader br = new BufferedReader(new FileReader(matriceFichier));
+             BufferedWriter bw = new BufferedWriter(new FileWriter(arcFichier))) {
+
+            // Lire la première ligne du fichier qui contient les noms des noeuds.
+            String[] noeuds = br.readLine().split("\\s+");
+
+            String ligne;
+            while ((ligne = br.readLine()) != null) {
+                // diviser la ligne en un tableau de chaînes.
+                String[] partie = ligne.split("\\s+");
+
+                // L'indice du noeud source dans le tableau noeuds.
+                int index = -1;
+                for (int i = 0; i < noeuds.length; i++) {
+                    if (noeuds[i].equals(partie[0])) {
+                        index = i;
+                        break;
+                    }
+                }
+                // Écrire les arcs dans le fichier de sortie.
+                for (int i = 1; i < partie.length; i++) {
+                    // Si le coût n'est pas 0, écrire l'arc dans le fichier de sortie.
+                    double cout = Double.parseDouble(partie[i]);
+                    if (cout != 0) {
+                        bw.write(noeuds[index] + " " + noeuds[i] + " " + cout + "\n");
+                    }
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Fichier non trouvé");
+        } catch (IOException e) {
+            System.out.println("Erreur lors de la lecture/écriture du fichier: ");
+        }
+    }
+
 
     @Override
     public ArrayList<String> listeNoeuds() {
