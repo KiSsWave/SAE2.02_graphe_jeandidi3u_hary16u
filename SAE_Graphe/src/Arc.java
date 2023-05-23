@@ -4,7 +4,7 @@ class Arc {
 
     public Arc(String d, double c) {
         if(c <= 0){
-            throw new IllegalArgumentException("Le cout doit etre positif");
+            throw new IllegalArgumentException("Le cout doit être positif");
         }
         this.dest = d;
         this.cout = c;

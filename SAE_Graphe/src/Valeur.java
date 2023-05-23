@@ -88,5 +88,30 @@ public class Valeur {
 
     }
 
+    /**
+     * Calcule le chemin du noeud de départ à la destination.
+     *
+     * @param destination le nom du noeud de destination
+     * @return une liste de noms de noeuds du chemin
+     */
+    public ArrayList<String> calculerChemin(String destination) {
+        ArrayList<String> chemin = new ArrayList<>();
+
+        // Commencez par la destination
+        String noeud = destination;
+
+        while (noeud != null) {
+            // Ajoutez le noeud  au début du chemin
+            chemin.add(0, noeud);
+
+            // Allez au parent du noeud
+            noeud = getParent(noeud);
+        }
+
+        // Le chemin est maintenant du noeud de départ à la destination
+        return chemin;
+    }
 }
+
+
 

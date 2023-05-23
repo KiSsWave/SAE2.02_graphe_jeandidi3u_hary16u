@@ -67,9 +67,9 @@ public class GrapheListe implements Graphe {
             ensNom.add(destination);
             ensNoeuds.add(new Noeud(destination));
         }
-        for (int i = 0; i < ensNoeuds.size(); i++) {
-            if (ensNoeuds.get(i).getNom().equals(depart)) {
-                ensNoeuds.get(i).ajouterArc(destination, cout);
+        for (Noeud ensNoeud : ensNoeuds) {
+            if (ensNoeud.getNom().equals(depart)) {
+                ensNoeud.ajouterArc(destination, cout);
             }
         }
     }
@@ -89,7 +89,6 @@ public class GrapheListe implements Graphe {
     public String toGraphviz() {
         StringBuilder sb = new StringBuilder("digraph G {\n");
         for (Noeud noeud : ensNoeuds) {
-
             for (Arc arc : noeud.getAdj()){
                 sb.append(noeud.getNom()).append(" -> ");
                 sb.append(arc.getDest()).append(" [label = ").append((int)arc.getCout()).append("]\n");

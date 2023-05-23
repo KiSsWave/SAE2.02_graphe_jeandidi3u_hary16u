@@ -1,4 +1,4 @@
-public class BellmanFord {
+public class BellmanFord implements Algorithme{
 
     public Valeur resoudre(Graphe g, String depart) {
 
@@ -9,9 +9,9 @@ public class BellmanFord {
         }
         val.setValeur(depart, 0.0);
 
-        boolean change = true;
-        while (change) {
-            change = false;
+        boolean changer = true;
+        while (changer) {
+            changer = false;
             for (Noeud n : g.getNoeuds()) {
                 for (Arc arc : n.getAdj()) {
                     String destination = arc.getDest();
@@ -19,7 +19,7 @@ public class BellmanFord {
                     if (val.getValeur(n.getNom()) + cout < val.getValeur(destination)) {
                         val.setValeur(destination, val.getValeur(n.getNom()) + cout);
                         val.setParent(destination, n.getNom());
-                        change = true;
+                        changer = true;
                     }
                 }
             }

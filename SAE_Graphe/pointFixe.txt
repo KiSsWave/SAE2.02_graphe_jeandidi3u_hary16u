@@ -31,7 +31,6 @@ Fonction pointFixe(Graphe g InOut, Noeud depart)
                 voisin.parent ← min
             Fin Si
         Fin Pour
-        
         min.visité ← vrai
     Fin Tant que
 Fin 

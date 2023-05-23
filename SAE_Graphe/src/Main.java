@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+        //
         GrapheListe gr = new GrapheListe();
         gr.ajouterArc("A", "B", 12);
         gr.ajouterArc("A", "D", 87);
@@ -21,8 +22,7 @@ public class Main {
         System.out.println(grFichier.toString());
 
         //
-        GrapheListe.fichierMatrice("GrapheMatrice/fichierMatrice.txt","GrapheMatrice/ecritureFichier.txt");
-
+        GrapheListe.fichierMatrice("GrapheMatrice/fichierMatrice.txt", "GrapheMatrice/ecritureFichier.txt");
     }
 }
 
