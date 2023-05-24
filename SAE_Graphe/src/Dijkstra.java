@@ -4,6 +4,8 @@ public class Dijkstra {
     public Valeur resoudre(GrapheListe graphe, String depart) {
         // Initialiser la structure de valeur
         Valeur v = new Valeur();
+        //Initialiser le compteur d'iteration
+        //int iteration = 0;
 
         // Initialiser la liste des noeuds à traiter
         ArrayList<Noeud> noeudsATraiter = new ArrayList<>(graphe.getNoeuds());
@@ -19,6 +21,10 @@ public class Dijkstra {
 
         // Tant que la liste des noeuds à traiter n'est pas vide
         while (!noeudsATraiter.isEmpty()) {
+            //Afficher la nouvelle itération
+            //iteration++;
+            //System.out.println("Itération " + iteration + ": \n" + v);
+
             // Trouver le noeud u dont la distance est minimale
             Noeud u = noeudsATraiter.get(0);
             for (Noeud noeud : noeudsATraiter) {

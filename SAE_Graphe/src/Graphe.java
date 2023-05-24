@@ -8,9 +8,4 @@ public interface Graphe {
 
     public ArrayList<Noeud> getNoeuds();
 
-
-
-
-
-
 }
