@@ -1,8 +1,16 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Classe principale pour l'exécution de l'algorithme de Dijkstra.
+ */
 public class MainDijkstra {
 
+    /**
+     * Méthode principale du programme.
+     *
+     * @param args les arguments de la ligne de commande
+     */
     public static void main(String[] args) {
 
         // Initialisation du scanner pour lire l'input utilisateur

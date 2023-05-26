@@ -1,35 +1,45 @@
-public class BellmanFord implements Algorithme{
-    public  Valeur resoudre(Graphe g, String depart) {
-        //Initialisation de la valeur
-        Valeur val = new Valeur();
-        //Initialiser le compteur d'iteration
-        //int iteration = 0;
-        for (Noeud n : g.getNoeuds()) {
-            val.setValeur(n.getNom(), Double.MAX_VALUE);
+/**
+ * La classe BellmanFord représente l'implémentation de l'algorithme de Bellman-Ford.
+ * Cette classe implémente l'interface Algorithme.
+ */
+public class BellmanFord implements Algorithme {
+
+    /**
+     * Résout le problème du chemin le plus court en utilisant l'algorithme de Bellman-Ford.
+     *
+     * @param g Le graphe sur lequel l'algorithme est appliqué.
+     * @param depart Le noeud de départ pour le chemin.
+     * @return La valeur qui contient le chemin le plus court et les coûts des noeuds.
+     */
+    public Valeur resoudre(Graphe g, String depart) {
+        // Initialiser la structure qui stocke les distances minimales et les parents pour chaque noeud
+        Valeur v = new Valeur();
+
+        // Initialiser la distance de chaque noeud à l'infini et le parent à null
+        for (Noeud noeud : g.getNoeuds()) {
+            v.setValeur(noeud.getNom(), Double.POSITIVE_INFINITY);
+            v.setParent(noeud.getNom(), null);
         }
-        val.setValeur(depart, 0.0);
-        boolean changer = true;
-        while (changer) {
-            //Afficher la nouvelle itération
-            //iteration++;
-            //System.out.println("Itération " + iteration + ": \n" + val);
-            changer = false;
-            for (Noeud n : g.getNoeuds()) {
-                for (Arc arc : n.getAdj()) {
-                    String destination = arc.getDest();
-                    double cout = arc.getCout();
-                    double estimation = val.getValeur(n.getNom()) + cout;
-                    if (estimation < val.getValeur(destination)) {
-                        val.setValeur(destination, estimation);
-                        val.setParent(destination, n.getNom());
-                        changer = true;
+
+        // La distance du noeud de départ à lui-même est 0
+        v.setValeur(depart, 0);
+
+        for (int i = 0; i < g.getNoeuds().size() - 1; i++) {
+            for (Noeud noeud : g.getNoeuds()) {
+                for (Arc arc : noeud.getAdj()) {
+                    // Si la distance à travers le noeud est plus petite, mettre à jour la distance et le parent
+                    double d = v.getValeur(noeud.getNom()) + arc.getCout();
+                    if (d < v.getValeur(arc.getDest())) {
+                        v.setValeur(arc.getDest(), d);
+                        v.setParent(arc.getDest(), noeud.getNom());
                     }
                 }
             }
         }
-        return val;
+        return v;
     }
 }
+
 
 
 
