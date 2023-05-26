@@ -34,7 +34,7 @@ public class DijkstraTest {
         cheminAttendu.add("D");
         assertEquals(cheminAttendu, chemin);
 
-        // Teste le chemin le plus court de C à D.
+        // Teste le chemin le plus court de E à B.
         valeur = dijkstra.resoudre(grapheTest, "E");
         chemin = valeur.calculerChemin("B");
 
